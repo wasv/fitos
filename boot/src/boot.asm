@@ -1,6 +1,6 @@
 global start
 
-section .text
+section .bootloader
 bits 32
 start:
     ; print `OK` to screen

@@ -7,12 +7,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "23b62fc65de8e4e7f52534fb52b0f3ed04746ae267519eef2a83941e8085068b"
 
 [[package]]
-name = "fitos"
+name = "fitos-boot"
 version = "0.1.0"
 dependencies = [
+ "fitos-kernel",
  "llvm-tools",
  "nasm-rs",
 ]
+
+[[package]]
+name = "fitos-kernel"
+version = "0.1.0"
 
 [[package]]
 name = "llvm-tools"

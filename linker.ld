@@ -1,16 +1,20 @@
-ENTRY(start)
+ENTRY(_start)
 
 SECTIONS {
-    . = 1M;
-
     .boot :
     {
         /* ensure that the multiboot header is at the beginning */
-        *(.multiboot_header)
+        KEEP(*(.multiboot_header))
+        KEEP(*(.bootloader))
     }
 
-    .text :
+    . = 1M;
+    .kernel : ALIGN(4)
     {
-        *(.text)
+        KEEP(*(.kernel))
     }
+
+    _stack_start = .;
+    . += 0x7c00;
+    _stack_end = .;
 }

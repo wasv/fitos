@@ -4,19 +4,19 @@ use std::path::PathBuf;
 
 fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
-    let profile = env::var("PROFILE").unwrap();
-    let target_triple = env::var("TARGET").unwrap();
+    let kernel = env::var("KERNEL").unwrap();
 
     // Assemble nasm files.
-    let asm_files = &["src/boot/boot.asm", "src/boot/multiboot.asm"];
+    let asm_files = &["src/boot.asm", "src/multiboot.asm"];
     let mut nasm = nasm_rs::Build::new();
+    nasm.flag("-felf");
     for asm_file in asm_files {
         nasm.file(asm_file);
         println!("cargo:rerun-if-changed={}", asm_file);
     }
     nasm.compile("boot").unwrap();
 
-    let kernel: PathBuf = [r"target", target_triple.as_str(), profile.as_str(), "fitos"].iter().collect();
+    let kernel: PathBuf = PathBuf::from(kernel);
     let kernel_file_name = kernel.file_name()
         .unwrap()
         .to_str()
@@ -107,6 +107,8 @@ fn main() {
     // link kernel
     println!("cargo:rustc-link-search=native={}", out_dir.display());
     println!("cargo:rustc-link-lib=static=kernel_bin-{}", kernel_file_name);
+    println!("cargo:rustc-link-lib=static=boot");
 
     println!("cargo:rerun-if-changed=build.rs");
+    println!("cargo:rerun-if-changed=../linker.ld");
 }
