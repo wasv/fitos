@@ -1,7 +1,7 @@
 global start
 
 section .bootloader
-    extern _rust_main
+    extern _main
     extern _stack_end
 bits 32
 start:
@@ -10,13 +10,13 @@ start:
     call check_multiboot
     call check_cpuid
 
-    ; print `OK` to screen
-    mov dword [0xb8000], 0x2f4b2f4f
+    ; print red space to screen
+    mov word [0xb8000], 0x4f00
 
-    call _rust_main
+    call _main
 
-    ; print `AY` to screen
-    mov dword [0xb8004], 0x2f592f41
+    ; print green space to screen
+    mov word [0xb8000], 0x2f00
 
     hlt
 

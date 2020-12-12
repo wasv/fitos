@@ -1,12 +1,14 @@
-[workspace]
+[package]
+name = "fitos"
+version = "0.1.0"
+authors = ["Billy Stevens <contact@wasv.me>"]
+edition = "2018"
+build = "build.rs"
 
-members = [
-    "boot",
-    "kernel"
-]
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
-[profile.dev]
-panic = "abort"
+[dependencies]
 
-[profile.release]
-panic = "abort"
+[build-dependencies]
+llvm-tools = { version = "0.1" }
+nasm-rs = "0.2.0"

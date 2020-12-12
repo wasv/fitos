@@ -4,11 +4,11 @@
 use core::panic::PanicInfo;
 
 #[no_mangle] // don't mangle the name of this function
-pub extern fn rust_main() -> () {
-    let hello = b"Hello World!";
+pub extern fn main() -> () {
+    let hello = b"Hello World!!";
     let color_byte = 0x1f; // white foreground, blue background
 
-    let mut hello_colored = [color_byte; 24];
+    let mut hello_colored = [color_byte; 26];
     for (i, char_byte) in hello.into_iter().enumerate() {
         hello_colored[i*2] = *char_byte;
     }

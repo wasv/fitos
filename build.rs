@@ -5,7 +5,7 @@ fn main() {
     let out_dir = PathBuf::from(env::var("OUT_DIR").unwrap());
 
     // Assemble nasm files.
-    let asm_files = &["src/boot.asm", "src/multiboot.asm"];
+    let asm_files = &["src/boot/start.asm", "src/boot/multiboot.asm"];
     let mut nasm = nasm_rs::Build::new();
     nasm.flag("-felf");
     for asm_file in asm_files {
