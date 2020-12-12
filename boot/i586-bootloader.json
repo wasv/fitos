@@ -18,5 +18,5 @@
             "--script=linker.ld"
         ]
     },
-	"relocation_model": "static"
+	"relocation-model": "static"
 }
