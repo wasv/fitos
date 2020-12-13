@@ -4,9 +4,7 @@ An x86 rust kernel that is bootable using multiboot2 and grub.
 
 ## Dpendencies
 
-- Rust nightly later than 2020-12-11 with the following components:
-  - `llvm-tools-preview`
-  - `rust-src`
+- Rust nightly later than 2020-12-11 with the `rust-src` components.
 - [nasm](https://www.nasm.us/) for assembling the startup code.
 - `grub-mkrescue` command (or equivalent multiboot2 compatible bootloader)
 - `qemu-system-i386` command for testing (optional).

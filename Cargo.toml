@@ -10,5 +10,4 @@ build = "build.rs"
 [dependencies]
 
 [build-dependencies]
-llvm-tools = { version = "0.1" }
 nasm-rs = "0.2.0"
